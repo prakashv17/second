@@ -1,3 +1,5 @@
+
+
 .booyah-box{
 	
 -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -26,4 +28,11 @@ body{
 .navbar.navbar-inverse{
 	background:url('/assets/blackorchid.png');
 	border-radius: 0;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #E3E85A;
+  font-family: 'nobileregular', sans-serif;
+  font-size:26px;
+  
 }
