@@ -8,6 +8,12 @@ gem 'rails_stdout_logging'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
+#map gem
+gem "geocoder"
+
+#To apply ENV for the API Key, to encrypt out API key
+gem "figaro", ">= 1.0.0"
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
