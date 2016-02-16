@@ -11,6 +11,12 @@ gem 'rails', '4.0.1'
 #map gem
 gem "geocoder"
 
+# For Carrierwave to touch base with AWS
+gem 'fog', "~> 1.3.1"
+
+# user photo uploading gem
+gem 'carrierwave'
+
 #To apply ENV for the API Key, to encrypt out API key
 gem "figaro", ">= 1.0.0"
 

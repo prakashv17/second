@@ -1,17 +1,16 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
-	<h1><%= @place.name %></h1>
-	<i><%= @place.address %></i>
-	<br/><br/>
-	<p><%= @place.description %></p>
+		<h1><%= @place.name %></h1>
+		<i><%= @place.address %></i>
+		<br/><br/>
+		<p><%= @place.description %></p>
 
 		<style>
 	      #map {
 	        height: 300px;
 	      }
-	      </style>
+	     </style>
 
   
-
   		<% if @place.latitude.present? && @place.longitude.present? %>
 		    <script>
 				function initMap() {
@@ -33,10 +32,10 @@
 		    <script async defer
 		        src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
 			<div id="map"></div>
-
 		<% end %>
 
 		<br />
+
 
 		<div class="pull-right">
 			<% if current_user && current_user == @place.user %>
@@ -47,7 +46,7 @@
 
 </div>
 
-<div class="clear"></div>
+		<div class="clear"></div>
 
 
 
@@ -74,17 +73,17 @@
 		  </div>
 		</div>
 
-	<div class="col-xs-10 col-xs-offset-1">
-		<h1 class="pull-left">Comments</h1>
-		<!-- Button trigger modal -->
-		<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-		  Add a comment
-		</button>
-	</div>
+		<div class="col-xs-10 col-xs-offset-1">
+				<h1 class="pull-left">Comments</h1>
+				<!-- Button trigger modal -->
+				<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">
+				  Add a comment
+				</button>
+			</div>
 
-<div class="clear"></div>
+			<div class="clear"></div>
 
-	  
+		  
 			<% @place.comments.each do |comment| %>
 			<div class="col-xs-12 col-sm-6">
 				<blockquote>
@@ -94,7 +93,48 @@
 					<%= comment.message %>
 					<small><%= comment.user.email %></small>
 				</blockquote>
-			
-	</div>
+		</div>
 	<% end %>
+
+
+<div class="col-xs-10 col-xs-offset-1">
+	<h1 class="pull-left">Pictures</h1>
+	<!-- Button trigger modal -->
+	<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myPictureModal">
+	  Add a picture
+	</button>
+</div>
+
+<div class="modal fade" id="myPictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add a photo</h4>
+      </div>
+      
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+	      <div class="modal-body">
+					<%= f.input :caption %>
+					<%= f.input :picture %>
+    		</div>
+		    
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
+		    </div>
+
+    		
+    	<% end %>
+    </div>
+  </div>
+</div>
+
+<% @place.photos.each do |photo| %>
+  <%= image_tag photo.picture %>
+  <%= photo.caption %>
+<% end %>
+			
+			
+
 	

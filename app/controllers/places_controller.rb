@@ -23,6 +23,7 @@ class PlacesController < ApplicationController
 	def show
 		@place = Place.find(params[:id])
 		@comment = Comment.new
+		@photo = Photo.new
 	end
 
 	def edit
@@ -42,7 +43,7 @@ class PlacesController < ApplicationController
 
 		@place.update_attributes(place_params)
 		 if @place.valid?
-    		redirect_to root_path
+    		redirect_to @place
   		  else
     		render :edit, status: :unprocessable_entity
   		   end
@@ -62,7 +63,7 @@ class PlacesController < ApplicationController
 	private
 
 	def place_params
-		params.require(:place).permit(:name, :description, :address)
+		params.require(:place).permit(:name, :description, :address, :picture)
 	end
 
 
